@@ -1,17 +1,18 @@
+# Does not care which is max and min floor number, as any inputs would be buttons
 
-
+# selectedFloor is the floor input selected by the user
+# the initial "currentFloor" can be defined as 0 to begin with
 
 state("IDLE").
-    transition("START_PRESSED").to("DOOR_OPEN").setState("floor", 0)
+    transition("START_PRESSED").to("DOOR_OPEN").setState("selected", selectedFloor)
 state("DOOR_OPEN").
-    transition("CLOSED").to("GOING_UP").whenStateEquals("UP_CLICK")
-    transition("CLOSED").to("IDLE").whenStateEquals("NULL")
+    transition("CLOSED_DOOR").to("GOING_UP").when("selected" > "currentFloor")
+    transition("CLOSED_DOOR").to("GOING_DOWN").when("selected" < "currentFloor")
 state("GOING_UP").
-    transition("ARRIVED").to("STOPPED_AT_FLOOR").whenStateEquals("floor", selected)
-                        else.changeState("floor", +1)
+    transition("ARRIVED").to("STOPPED_AT_FLOOR").when("currentFloor" = "selected")
+                        otherwise().changeState("currentFloor", +1)
 state("GOING_DOWN").
-    transition("ARRIVED").to("STOPPED_AT_FLOOR").whenStateEquals("floor", 0).
-                        else.changeState("floor", -1)
+    transition("ARRIVED").to("STOPPED_AT_FLOOR").when("currentFloor" = "selected")
+                        otherwise().changeState("currentFloor", -1)
 state("STOPPED_AT_FLOOR")
-    transition("OPEN").to("DOOR_OPEN")
-    transition("GO_DOWN").to("GOING_DOWN")
+    transition("OPEN_EXIT_CLOSE").to("IDLE")
