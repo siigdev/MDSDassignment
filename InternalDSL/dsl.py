@@ -1,13 +1,12 @@
-from fysom import *
- 
-fsm = Fysom({'initial': 'awake',
-             'final': 'red',
-             'events': [
-                 {'name': 'wakeup', 'src': 'sleeping', 'dst': 'awake'},
-                 {'name': 'sleep',  'src': 'awake',   'dst': 'sleeping'}]})
- 
-print(fsm.current)   # awake
-fsm.sleep()
-print(fsm.current)   # sleeping
-fsm.wakeup()
-print(fsm.current)   # awake
+state("IDLE").
+    transition("START_PRESSED").to("DOOR_OPEN")
+state("DOOR_OPEN").
+    transition("CLOSED").to("GOING_UP").whenStateEquals("UP_CLICK")
+    transition("CLOSED").to("IDLE").whenStateEquals("NULL")
+state("GOING_UP").
+    transition("ARRIVED").to("STOPPED_AT_FLOOR").whenStateEquals(FloorNumber)
+state("GOING_DOWN").
+    transition("ARRIVED").to("STOPPED_AT_FLOOR").whenStateEquals(FloorNumber=0)
+state("STOPPED_AT_FLOOR")
+    transition("OPEN").to("DOOR_OPEN")
+    transition("GO_DOWN").to("GOING_DOWN")
