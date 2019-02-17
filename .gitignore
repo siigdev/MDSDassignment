@@ -21,3 +21,7 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+builder/__pycache__/Builder.cpython-36.pyc
+builder/__pycache__/Machine.cpython-36.pyc
+model/__pycache__/Triangle.cpython-36.pyc
+executor/__pycache__/Executor.cpython-36.pyc
