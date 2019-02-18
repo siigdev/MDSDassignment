@@ -25,3 +25,5 @@ builder/__pycache__/Builder.cpython-36.pyc
 builder/__pycache__/Machine.cpython-36.pyc
 model/__pycache__/Triangle.cpython-36.pyc
 executor/__pycache__/Executor.cpython-36.pyc
+.idea/encodings.xml
+.idea/workspace.xml
