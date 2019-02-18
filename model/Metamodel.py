@@ -1,10 +1,8 @@
-from builder.Builder import *
 from executor.Executor import *
 from model.Machine import *
 
 
 builder = Builder()
-machine = Machine()
 
 # Microwave Oven Metamodel 
 machine = builder. \
