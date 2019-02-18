@@ -1,21 +1,15 @@
 import tkinter
-from Metamodel import *
-from executor.Executor import *
-
-executor = Executor(builder.getmachine())
-print(builder.currentState.name)
-executor.test("START")
-executor.test("CLOSE")
+from model.Metamodel import *
 
 class Gui:
     def __init__(self):
-        self.currentState = "INACTIVE"
         window = tkinter.Tk()
         window.title("Microwave State Machine")
         window.geometry('200x150')
+
         currstatelbl = tkinter.Label(window, text="Current state: ")
         currstatelbl.grid(column=0, row=0)
-        self.currstate = tkinter.Label(window, text="?")
+        self.currstate = tkinter.Label(window, text=builder.currentState.name)
         self.currstate.grid(column=1, row=0)
         start = tkinter.Button(window, text="Start", command=self.start)
         start.grid(column=0, row=1)
@@ -27,40 +21,26 @@ class Gui:
         close.grid(column=0, row=4)
         window.mainloop()
 
-
     def start(self):
-        self.currstate.configure(text="reset")
-        for transition in builder.currentState.transitions:
-            print("DE ER HER: ", transition.trigger, " -> ", transition.target)
-            if transition.trigger == "START":
-                self.currstate.configure(text=transition.target)
-                builder.currentState = State(transition.target)
-                print(builder.currentState.name)
-            else:
-                self.currstate.configure(text="You can only use: " + transition.trigger)
+        self.check("START")
 
     def stop(self):
-        for transition in builder.currentState.transitions:
-            print("DE ER HER: ", transition.trigger, " -> ", transition.target)
-            if transition.trigger == "STOP":
-                self.currstate.configure(text=transition.target)
-                builder.currentState = State(transition.target)
-                print(builder.currentState.name)
+        self.check("STOP")
 
     def open(self):
-        for transition in builder.currentState.transitions:
-            print("DE ER HER: ", transition.trigger, " -> ", transition.target)
-            if transition.trigger == "OPEN":
-                self.currstate.configure(text=transition.target)
-                builder.currentState = State(transition.target)
-                print(builder.currentState.name)
+        self.check("OPEN")
 
     def close(self):
-        for transition in builder.currentState.transitions:
-            print("DE ER HER: ", transition.trigger, " -> ", transition.target)
-            if transition.trigger == "CLOSE":
-                self.currstate.configure(text=transition.target)
-                builder.currentState = State(transition.target)
-                print(builder.currentState.name)
+        self.check("CLOSE")
 
-Gui()
+    def check(self, trigger):
+        for state in machine.getstates():
+            if state.name == builder.currentState.name:
+                for transition in state.transitions:
+                    if transition.trigger == trigger:
+                        builder.currentState = State(transition.target)
+                        self.currstate.configure(text=builder.currentState.name)
+
+
+if __name__ == "__main__":
+    Gui()

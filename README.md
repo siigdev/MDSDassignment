@@ -1,8 +1,7 @@
 ## Model-Driven Software Development Project Assignment 1
-This features an internal domain specific language for defining state machines. The DSL is written in Python and includes a working metamodel of a microwave oven with an additional graphical user interface for convinience.
-The GUI is not yet fully functional yet, but provides some initial functionality. The program can also be run through Metamodel.py which prints out the states and transitions.
+This features an internal domain specific language for defining state machines. The DSL is written in Python and includes a working metamodel of a microwave oven with an additional graphical user interface for convinience located in Gui.py. The program can also be run through Print.py which prints out the initialized states and transitions.
 
-### Syntax
+### DSL Syntax
 
 ```
 builder.
@@ -11,5 +10,5 @@ builder.
 ```
 
 ### Requirements
-- Python 3+
+- Python3
 - PyQt
