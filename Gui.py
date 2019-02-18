@@ -1,5 +1,5 @@
 import tkinter
-from RunTest import *
+from Metamodel import *
 from executor.Executor import *
 
 executor = Executor(builder.getmachine())

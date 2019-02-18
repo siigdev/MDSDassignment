@@ -27,3 +27,7 @@ model/__pycache__/Triangle.cpython-36.pyc
 executor/__pycache__/Executor.cpython-36.pyc
 .idea/encodings.xml
 .idea/workspace.xml
+model/__pycache__/Transition.cpython-36.pyc
+__pycache__/Metamodel.cpython-36.pyc
+model/__pycache__/Machine.cpython-36.pyc
+model/__pycache__/State.cpython-36.pyc
