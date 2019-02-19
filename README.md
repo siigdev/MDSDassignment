@@ -13,4 +13,4 @@ builder.
 Requirements
 -----
 - Python3
-- PyQt (Optional)
+- Tkinter (Optional)
