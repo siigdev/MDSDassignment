@@ -1,5 +1,6 @@
 import tkinter
 from model.Metamodel import *
+from executor.Executor import * 
 
 class Gui:
     def __init__(self):
@@ -9,7 +10,7 @@ class Gui:
 
         currstatelbl = tkinter.Label(window, text="Current state: ")
         currstatelbl.grid(column=0, row=0)
-        self.currstate = tkinter.Label(window, text=builder.currentState.name)
+        self.currstate = tkinter.Label(window, text=Executor.getCurrentState)
         self.currstate.grid(column=1, row=0)
         start = tkinter.Button(window, text="Start", command=self.start)
         start.grid(column=0, row=1)
