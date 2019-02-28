@@ -14,3 +14,7 @@ Requirements
 -----
 - Python3
 - Tkinter (Optional)
+
+Note
+------
+The executor needs an update in order to function properly
